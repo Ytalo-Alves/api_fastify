@@ -1,15 +1,12 @@
 import fastify from "fastify";
-import { knex } from "./database";
 import { env } from "./env";
-
+import TransactionsRoutes from "./routes/transactions";
+import  cookie  from "@fastify/cookie";
 
 const app = fastify();
 
-app.get("/user", async () => {
-  const transaction = await knex('transactions').select('*')
-
-  return transaction
-});
+app.register(cookie)
+app.register(TransactionsRoutes)
 
 app.listen({ port: env.PORT }).then(() => {
   console.log(`server is running on port ${env.PORT}`);

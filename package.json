@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch ./src/server.ts",
-    "knex": "node --no-warnings --import tsx ./node_modules/knex/bin/cli.js"
+    "dev": "tsx watch src/server.ts",
+    "knex": "node --no-warnings --import tsx ./node_modules/.bin/knex",
+    "test": "vitest",
+    "build": "tsup src -d build"
   },
   "keywords": [],
   "author": "",
@@ -12,8 +14,12 @@
   "description": "",
   "devDependencies": {
     "@types/node": "^22.8.7",
+    "@types/supertest": "^6.0.2",
+    "supertest": "^7.0.0",
+    "tsup": "^8.3.5",
     "tsx": "^4.19.2",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
   },
   "dependencies": {
     "@fastify/cookie": "^11.0.1",

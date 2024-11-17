@@ -45,10 +45,7 @@ export default function TransactionsRoutes(app: FastifyInstance) {
     return reply.status(201).send();
   });
 
-  app.get(
-    "/transactions",
-    { preHandler: [checkSessionIdExists] },
-    async (request, reply) => {
+  app.get("/transactions",{ preHandler: [checkSessionIdExists] }, async (request, reply) => {
       const { sessionId } = request.cookies;
 
       if (!sessionId) {
@@ -59,7 +56,7 @@ export default function TransactionsRoutes(app: FastifyInstance) {
         .where("session_id", sessionId)
         .select();
 
-      return reply.send(transactions);
+      return reply.send({transactions});
     }
   );
 
@@ -93,6 +90,6 @@ export default function TransactionsRoutes(app: FastifyInstance) {
         }).format(Number(summary.amount))
       : null;
 
-    return { summary: { amount: formattedAmount } };
+    return { summary };
   });
 }

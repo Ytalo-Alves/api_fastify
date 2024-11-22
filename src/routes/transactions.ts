@@ -18,7 +18,7 @@ export default function TransactionsRoutes(app: FastifyInstance){
 
     if (!sessionId){
       sessionId = randomUUID()
-      reply.cookie('sessionId', sessionId, {
+      reply.setCookie('sessionId', sessionId, {
         path: '/',
         maxAge: 60 * 60, // 1 hour
       })
